@@ -1,6 +1,6 @@
 const Preview = ({ preview }) => {
     return ( 
-    <div 
+      <div 
         id="preview" 
         style={{
           width: 685, 
@@ -10,7 +10,7 @@ const Preview = ({ preview }) => {
         dangerouslySetInnerHTML={{
           __html: preview
         }}
-    />
+      />
     );
 }
  
