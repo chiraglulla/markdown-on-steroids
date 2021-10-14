@@ -20,8 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 style={{textAlign:"center"}}>Markdown On Steroids</h1>
-
+      <h1 className="title">Markdown on steroids</h1>
       <Editor text={text} handleChange={handleChange}></Editor>
       <Preview preview={preview} />
     </div>

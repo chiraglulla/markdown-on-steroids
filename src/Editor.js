@@ -1,15 +1,14 @@
 const Editor = ({ text, handleChange }) => {
     return ( 
     <textarea 
+        className="editor"
         value={text}
         onChange={handleChange}
         name="editor" 
-        id="editor" 
-        cols="90" 
-        rows="10"
+        id="editor"
     >
         {text}
-      </textarea>
+    </textarea>
     );
 }
  

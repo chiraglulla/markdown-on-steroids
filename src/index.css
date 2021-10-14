@@ -11,3 +11,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 30px 20px;
+  background-color: #e7eff9;
+  color: #3f4786;
+}
+
+.title {
+  margin-top: -10px;
+  grid-column: 1 / 13;
+}
+
+.editor {
+  width: 100%;
+  padding: 5px;
+  color: #3f4786;
+  background-color: #fefefe;
+  height: 90vh;
+  grid-column: 1 / 6;
+}
+
+#preview {
+  padding: 5px;
+  border: 1px solid #3f4786;
+  background-color: white;
+  grid-column: 7 / 13;  
+}
