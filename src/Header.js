@@ -1,18 +1,25 @@
+import { useState } from "react";
 import { Link } from "react-router-dom"
 
 const Header = () => {
+
+    const [ docName, setDocName ] = useState("");
+
     return ( 
-        <div className="row d-flex align-items-center justify-content-around my-3">
+        <div className="row mx-1 my-3 flex align-items-center">
             <Link 
                 to="/" 
-                className="title col-8 display-4 text-dark" 
+                className="title col-3 h3 text-dark" 
                 style={{
                     textDecoration:"none"
                 }}
             >
                 Markdown on Steroids
             </Link>
-            <div>
+
+            <input value ={docName} onChange={e => setDocName(e.target.value)} className="form-control col-2" type="text" placeholder="Untitled" />
+
+            <div className="d-flex col justify-content-end align-items-center">
                 <Link 
                     to="/dashboard" 
                     className="btn btn-sm btn-outline-dark align-middle mx-2"
