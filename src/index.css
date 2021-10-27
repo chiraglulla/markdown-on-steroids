@@ -1,0 +1,7 @@
+.blank {
+    width: 33.33%;
+}
+
+.blank:hover {
+    background-color: rgb(220, 220, 220);
+}

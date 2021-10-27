@@ -2,10 +2,10 @@ import { useState } from "react";
 import marked from "marked";
 import DOMPurify from "dompurify";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Editor from "./Editor";
-import Preview from "./Preview";
-import Header from "./Header";
-import DashBoard from "./DashBoard";
+import Editor from "./Components/Editor";
+import Preview from "./Components/Preview";
+import Header from "./Components/Header";
+import Dashboard from "./Components/Dashboard";
 
 const App = () => {
 
@@ -26,16 +26,16 @@ const App = () => {
 
   return (
     <Router>
-      <div className="App container-fluid my-3">
+      <div className="App container-fluid">
         <Header />
         <div className="row px-4">
           <Switch>
             <Route path="/" exact>
+                <Dashboard />
+            </Route>
+            <Route path="/editor">
               <Editor text={text} handleChange={handleChange} />
               <Preview preview={preview} />
-            </Route>
-            <Route path="/dashboard">
-              <DashBoard />
             </Route>
           </Switch>
         </div>
