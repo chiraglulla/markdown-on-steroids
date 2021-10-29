@@ -6,7 +6,7 @@ const Header = () => {
     const [ docName, setDocName ] = useState("");
 
     return ( 
-        <div className="d-flex align-items-center my-4">
+        <div className="d-flex align-items-center my-4 border-bottom border-dark">
             <Link 
                 to="/" 
                 className="title h3 text-dark mx-3" 
