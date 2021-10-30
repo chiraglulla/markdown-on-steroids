@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom"
 
 const Header = () => {
 
-    const [ docName, setDocName ] = useState("");
+    // const [ docName, setDocName ] = useState("");
 
     return ( 
-        <div className="d-flex align-items-center my-4 border-bottom border-dark">
+        <div className="d-flex align-items-center my-4">
             <Link 
                 to="/" 
                 className="title h3 text-dark mx-3" 
@@ -17,7 +16,7 @@ const Header = () => {
                 Markdown on Steroids
             </Link>
 
-            {/* <input value ={docName} onChange={e => setDocName(e.target.value)} className="form-control col-2" type="text" placeholder="Untitled" /> */}
+           {/* <input value ={docName} onChange={e => setDocName(e.target.value)} className="form-control col-2" type="text" placeholder="Untitled" /> */}
             
             <div className="d-flex justify-content-end align-items-center ml-auto mx-3">
                 <Link 

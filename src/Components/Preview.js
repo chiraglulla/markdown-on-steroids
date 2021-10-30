@@ -1,6 +1,6 @@
 const Preview = ({ preview }) => {
     return ( 
-      <div className="card col-6 p-0">
+      <div className="card col-6 p-0 full-height">
       <div className="card-header lead">Output</div>
         <div className="card-body p-1">
           <div 
