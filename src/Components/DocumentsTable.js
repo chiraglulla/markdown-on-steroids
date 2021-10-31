@@ -12,6 +12,7 @@ const DocumentsTable = () => {
                 <tr key={markdown.id}>
                     <th scope="row">{markdown.id}</th>
                     <td>{markdown.name}</td>
+                    <td>{markdown.created_at}</td>
                     <td className="text-center">
                         <Link
                             to={`/editor/${markdown.id}`}
@@ -54,6 +55,7 @@ const DocumentsTable = () => {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Document</th>
+                        <th></th>
                         <th className="text-center" scope="col">Actions</th>
                     </tr>
                 </thead>
