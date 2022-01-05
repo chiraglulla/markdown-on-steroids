@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { formatDistance } from "date-fns";
 
 const DocumentsTable = () => {
   const [markdowns, setMarkdowns] = useState([]);
@@ -60,7 +61,11 @@ const DocumentsTable = () => {
               <tr key={markdown._id}>
                 <th scope="row">{idx + 1}</th>
                 <td>{markdown.name}</td>
-                <td>{markdown.createdAt}</td>
+                <td>
+                  {formatDistance(new Date(markdown.createdAt), Date.now(), {
+                    addSuffix: true,
+                  })}
+                </td>
                 <td className="text-center">
                   <Link
                     to={`/editor/${markdown._id}`}
