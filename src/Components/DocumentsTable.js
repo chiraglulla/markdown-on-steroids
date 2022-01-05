@@ -3,11 +3,6 @@ import { Link } from "react-router-dom";
 
 const DocumentsTable = () => {
   const [markdowns, setMarkdowns] = useState([]);
-  // const {
-  //   data: markdowns,
-  //   isLoading,
-  //   error,
-  // } = useFetch("http://localhost:5000/api/v1/document");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/document", {
@@ -27,19 +22,18 @@ const DocumentsTable = () => {
   }, []);
 
   const deleteDocument = (id) => {
-    console.log(id);
     fetch(`http://localhost:5000/api/v1/document/${id}`, {
       method: "DELETE",
-      headers: { "Access-Control-Request-Method": "DELETE" },
       mode: "cors",
       credentials: "omit",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     })
       .then((res) => {
         if (!res.ok) throw Error("Cannot fetch data.");
-        return res.json();
-      })
-      .then((info) => {
-        console.log(info);
+        setMarkdowns(markdowns.filter((markdown) => markdown._id !== id));
       })
       .catch((err) => {
         console.log(err);

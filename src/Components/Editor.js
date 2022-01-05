@@ -7,7 +7,7 @@ import Preview from "./Preview";
 
 const Editor = () => {
   const { id } = useParams();
-
+  const defaultText = "# Start by writing some markup!";
   const [text, setText] = useState("");
   const [preview, setPreview] = useState("");
 
@@ -21,7 +21,9 @@ const Editor = () => {
         return res.json();
       })
       .then((data) => {
-        setText(data.data.document.text);
+        const dataText = data.data.document.text;
+        if (dataText === "") setText(defaultText);
+        else setText(dataText);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +48,7 @@ const Editor = () => {
         <div className="card-body p-0 form-group">
           <textarea
             className="editor form-control full-height"
-            value={text}
+            placeholder={text}
             onChange={handleChange}
             name="editor"
             id="editor"
@@ -54,9 +56,7 @@ const Editor = () => {
               resize: "none",
               borderRadius: 0,
             }}
-          >
-            {text}
-          </textarea>
+          ></textarea>
         </div>
       </div>
       <Preview preview={preview} />
