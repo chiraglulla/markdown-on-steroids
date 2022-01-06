@@ -62,7 +62,7 @@ const DocumentsTable = () => {
                 <th scope="row">{idx + 1}</th>
                 <td>{markdown.name}</td>
                 <td>
-                  {formatDistance(new Date(markdown.createdAt), Date.now(), {
+                  {formatDistance(new Date(markdown.updatedAt), Date.now(), {
                     addSuffix: true,
                   })}
                 </td>
