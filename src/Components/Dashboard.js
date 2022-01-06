@@ -1,12 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import DocumentsTable from "./DocumentsTable";
+import Logo from "./Logo";
 
 const Dashboard = () => {
   // npx json-server --watch data/db.json --port 8000
   const history = useHistory();
 
   const handleClick = (e) => {
+    e.preventDefault();
     fetch("http://localhost:5000/api/v1/document", {
       method: "POST",
       mode: "cors",
@@ -21,7 +23,7 @@ const Dashboard = () => {
       }),
     })
       .then((res) => {
-        if (!res.ok) throw Error("Cannot fetch data.");
+        if (!res.ok) throw Error("Cannot create document.");
         return res.json();
       })
       .then((data) => {
@@ -31,11 +33,11 @@ const Dashboard = () => {
       .catch((err) => {
         console.log(err);
       });
-    e.preventDefault();
   };
 
   return (
     <React.Fragment>
+      <Logo />
       <div className="col-12 p-5 rounded">
         <button
           onClick={handleClick}
