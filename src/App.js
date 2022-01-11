@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Editor from "./Components/Editor";
 import Dashboard from "./Components/Dashboard";
+import Home from "./Components/Home";
 
 const App = () => {
   return (
@@ -9,7 +10,13 @@ const App = () => {
         <div className="row px-4">
           <Switch>
             <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/dashboard">
               <Dashboard />
+            </Route>
+            <Route path="/editor">
+              <Editor />
             </Route>
             <Route path="/editor/:id">
               <Editor />
