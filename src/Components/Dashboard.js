@@ -1,7 +1,7 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import DocumentsTable from "./DocumentsTable";
-import Logo from "./Logo";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import DocumentsTable from './DocumentsTable';
+import Logo from './Logo';
 
 const Dashboard = () => {
   // npx json-server --watch data/db.json --port 8000
@@ -9,21 +9,21 @@ const Dashboard = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/v1/document", {
-      method: "POST",
-      mode: "cors",
-      credentials: "omit",
+    fetch('http://localhost:5000/api/v1/document', {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: "Untitled Document",
-        text: "",
+        name: 'Untitled Document',
+        text: '',
       }),
     })
       .then((res) => {
-        if (!res.ok) throw Error("Cannot create document.");
+        if (!res.ok) throw Error('Cannot create document.');
         return res.json();
       })
       .then((data) => {
@@ -43,7 +43,7 @@ const Dashboard = () => {
           onClick={handleClick}
           className="btn btn-white blank mx-auto d-flex border border-dark rounded w-20 p-3 align-items-center text-dark"
           style={{
-            textDecoration: "none",
+            textDecoration: 'none',
           }}
         >
           <h3>Create a blank document</h3>

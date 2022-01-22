@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Editor from "./Components/Editor";
-import Dashboard from "./Components/Dashboard";
-import Home from "./Components/Home";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Editor from './Components/Editor';
+import Dashboard from './Components/Dashboard';
+import Home from './Components/Home';
 
 const App = () => {
   return (
