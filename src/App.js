@@ -15,7 +15,7 @@ const App = () => {
             <Route path="/dashboard">
               <Dashboard />
             </Route>
-            <Route path="/editor">
+            <Route path="/editor" exact>
               <Editor />
             </Route>
             <Route path="/editor/:id">

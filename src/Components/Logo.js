@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Logo = () => {
   return (
     <Link
-      to="/"
+      to="/dashboard"
       className="col-12 text-center text-dark h3 p-3"
       style={{
-        textDecoration: "none",
+        textDecoration: 'none',
       }}
     >
       Markdown on steroids
