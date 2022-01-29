@@ -12,7 +12,7 @@ const Dashboard = () => {
     fetch('http://localhost:5000/api/v1/document', {
       method: 'POST',
       mode: 'cors',
-      credentials: 'omit',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

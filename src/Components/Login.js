@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,15 +24,29 @@ const Login = () => {
       }),
     })
       .then((res) => {
-        if (!res.ok) throw Error('Cannot fetch data.');
         return res.json();
       })
-      .then((data) => {
-        console.log(data);
+      .then((payload) => {
+        if (payload.status !== 'success') {
+          setIsError(true);
+          setError(payload.message);
+        } else {
+          history.push('/dashboard');
+        }
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleChange = (e) => {
+    const { value, id } = e.target;
+    if (id === 'email') setEmail(value);
+    if (id === 'password') setPassword(value);
+    if (isError) {
+      setIsError(false);
+      setError('');
+    }
   };
 
   return (
@@ -36,14 +54,16 @@ const Login = () => {
       <h1>Login</h1>
       <form>
         <input
+          id="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange}
           placeholder="Email"
           type="email"
         />
         <input
+          id="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
           placeholder="Password"
           type="password"
         />
@@ -56,6 +76,7 @@ const Login = () => {
           Login
         </button>
       </form>
+      {isError && <p className="text-danger">{error}</p>}
     </div>
   );
 };

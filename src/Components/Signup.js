@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Signup = () => {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const handleChange = (e) => {
     const { value, id } = e.target;
@@ -12,6 +16,11 @@ const Signup = () => {
     if (id === 'email') setEmail(value);
     if (id === 'password') setPassword(value);
     if (id === 'confirmPassword') setConfirmPassword(value);
+
+    if (isError) {
+      setIsError(false);
+      setError('');
+    }
   };
 
   const handleRegister = (e) => {
@@ -32,11 +41,15 @@ const Signup = () => {
       }),
     })
       .then((res) => {
-        if (!res.ok) throw Error('Cannot fetch data.');
         return res.json();
       })
-      .then((data) => {
-        console.log(data);
+      .then((payload) => {
+        if (payload.status !== 'success') {
+          setIsError(true);
+          setError(payload.message);
+        } else {
+          history.push('/dashboard');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -84,6 +97,7 @@ const Signup = () => {
           Register
         </button>
       </form>
+      {isError && <p className="text-danger">{error}</p>}
     </div>
   );
 };
