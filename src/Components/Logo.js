@@ -10,8 +10,8 @@ const Logo = () => {
       credentials: 'include',
     });
 
-    if(response.status === 204) history.push('/')
-  }
+    if (response.status === 204) history.push('/');
+  };
 
   return (
     <>
@@ -24,7 +24,12 @@ const Logo = () => {
       >
         Markdown on steroids
       </Link>
-      <button className='btn btn-white' onClick={logoutUser}>Log out</button>
+      <button className="btn btn-white" onClick={logoutUser}>
+        Log out
+      </button>
+      <Link className='btn btn-white' to="/profile" style={{ textDecoration: 'none' }}>
+        Profile
+      </Link>
     </>
   );
 };

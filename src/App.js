@@ -22,7 +22,7 @@ const App = () => {
             <Route path="/editor/:id">
               <Editor />
             </Route>
-            <Route path="/profile">
+            <Route path="/profile" exact>
               <Profile />
             </Route>
           </Switch>
