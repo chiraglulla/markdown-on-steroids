@@ -100,7 +100,7 @@ const DocumentsTable = () => {
                       <i className="fa fa-download"></i>
                     </Link>
                     <Link
-                      to="/"
+                      to="/dashboard"
                       onClick={(e) => deleteDocument(markdown._id)}
                       className="text-dark mx-3"
                       styles={{
