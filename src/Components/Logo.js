@@ -27,7 +27,7 @@ const Logo = () => {
       <button className="btn btn-white" onClick={logoutUser}>
         Log out
       </button>
-      <Link className='btn btn-white' to="/profile" style={{ textDecoration: 'none' }}>
+      <Link className='btn btn-dark ml-5' to="/profile" style={{ textDecoration: 'none' }}>
         Profile
       </Link>
     </>
