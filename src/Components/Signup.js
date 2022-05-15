@@ -89,6 +89,7 @@ const Signup = () => {
           id="confirmPassword"
         />
         <button
+          className="btn btn-white"
           style={{
             cursor: 'pointer',
           }}

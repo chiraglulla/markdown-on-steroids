@@ -4,6 +4,7 @@ const GoToEditor = () => {
   return (
     <Link to="/editor">
       <button
+        className='btn btn-white'
         style={{
           cursor: 'pointer',
         }}

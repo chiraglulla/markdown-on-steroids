@@ -25,6 +25,8 @@ const UpdateInfo = () => {
 
   const saveInfo = async (e) => {
     e.preventDefault();
+    document.querySelector('#name').disabled = true;
+    document.querySelector('#email').disabled = true;
     const changes = {
       name,
       email,

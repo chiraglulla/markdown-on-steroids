@@ -68,6 +68,7 @@ const Login = () => {
           type="password"
         />
         <button
+          className='btn btn-white'
           style={{
             cursor: 'pointer',
           }}
