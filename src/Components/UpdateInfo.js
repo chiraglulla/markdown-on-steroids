@@ -25,8 +25,8 @@ const UpdateInfo = () => {
 
   const saveInfo = async (e) => {
     e.preventDefault();
-    document.querySelector('#name').disabled = true;
-    document.querySelector('#email').disabled = true;
+    document.querySelector('#updateName').disabled = true;
+    document.querySelector('#updateEmail').disabled = true;
     const changes = {
       name,
       email,
@@ -48,39 +48,48 @@ const UpdateInfo = () => {
   };
 
   const editInfo = (e) => {
-    document.querySelector('#name').disabled = false;
-    document.querySelector('#email').disabled = false;
+    document.querySelector('#updateName').disabled = false;
+    document.querySelector('#updateEmail').disabled = false;
   };
 
   return (
-    <>
-      <button className="btn btn-white" type="button" onClick={editInfo}>
-        Edit
-      </button>
+    <div className="col-5 my-5" id="updateInfo">
+      <div className='d-flex align-items-center'>
+        <h3>Edit your details</h3>
+        <button className="btn btn-white mx-3" type="button" onClick={editInfo}>
+          Edit
+        </button>
+      </div>
       <form id="profile" onSubmit={saveInfo}>
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          disabled
-        />
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input
+            id="updateName"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled
+            className="form-control"
+          />
+        </div>
 
-        <label htmlFor="email">Email:</label>
-        <input
-          id="email"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          disabled
-        />
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            id="updateEmail"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled
+            className="form-control"
+          />
+        </div>
 
-        <button className="btn btn-white" type="submit">
+        <button className="btn btn-success" type="submit">
           Save
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

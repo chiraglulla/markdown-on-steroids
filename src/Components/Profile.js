@@ -1,13 +1,17 @@
-import UpdateInfo from "./UpdateInfo";
-import UpdatePassword from "./UpdatePassword";
+import UpdateInfo from './UpdateInfo';
+import UpdatePassword from './UpdatePassword';
+import Header from './Header';
 
 const Profile = () => {
-
   return (
-    <>
-      <UpdateInfo />
-      <UpdatePassword />
-    </>
+    <div className="container-fluid">
+      <Header logout={true} />
+      <main className='row my-5'>
+        <UpdateInfo />
+        <div className="col-1"></div>
+        <UpdatePassword />
+      </main>
+    </div>
   );
 };
 

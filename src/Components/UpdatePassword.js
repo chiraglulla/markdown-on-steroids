@@ -32,31 +32,45 @@ const UpdatePassword = () => {
   };
 
   return (
-    <form id="updatePassword" onSubmit={updatePassword}>
-      <label htmlFor="current">Current Password:</label>
-      <input
-        id="current"
-        type="password"
-        value={passwordCurrent}
-        onChange={(e) => setCurrent(e.target.value)}
-      />
-      <label htmlFor="new">New Password:</label>
-      <input
-        id="new"
-        type="password"
-        value={password}
-        onChange={(e) => setNew(e.target.value)}
-      />
-      <label htmlFor="newConfirm">Confirm Password:</label>
-      <input
-        id="newConfirm"
-        type="password"
-        value={confirmPassword}
-        onChange={(e) => setConfirm(e.target.value)}
-      />
+    <div className="col-6 my-5">
+      <h3>Update your password</h3>
+      <form id="updatePassword" onSubmit={updatePassword}>
+        <div className="form-group">
+          <label htmlFor="current">Current Password:</label>
+          <input
+            className='form-control'
+            id="current"
+            type="password"
+            value={passwordCurrent}
+            onChange={(e) => setCurrent(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="new">New Password:</label>
+          <input
+            className='form-control'
+            id="new"
+            type="password"
+            value={password}
+            onChange={(e) => setNew(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="newConfirm">Confirm Password:</label>
+          <input
+            className='form-control'
+            id="newConfirm"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirm(e.target.value)}
+          />
+        </div>
 
-      <button className='btn btn-white' type='submit'>Update My Password</button>
-    </form>
+        <button className="btn btn-success" type="submit">
+          Update My Password
+        </button>
+      </form>
+    </div>
   );
 };
 

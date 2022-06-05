@@ -41,8 +41,8 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { value, id } = e.target;
-    if (id === 'email') setEmail(value);
-    if (id === 'password') setPassword(value);
+    if (id === 'loginEmail') setEmail(value);
+    if (id === 'loginPassword') setPassword(value);
     if (isError) {
       setIsError(false);
       setError('');
@@ -50,25 +50,36 @@ const Login = () => {
   };
 
   return (
-    <div id="login">
+    <div className='col-4 my-5'  id="login">
       <h1>Login</h1>
+      <small className="lead">Login and get to work!</small>
       <form>
-        <input
-          id="email"
-          value={email}
-          onChange={handleChange}
-          placeholder="Email"
-          type="email"
-        />
-        <input
-          id="password"
-          value={password}
-          onChange={handleChange}
-          placeholder="Password"
-          type="password"
-        />
+        <div className="form-group">
+          <label htmlFor="loginEmail">Email</label>
+          <input
+            id="loginEmail"
+            value={email}
+            onChange={handleChange}
+            placeholder="Email"
+            type="email"
+            className='form-control'
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="loginPassword">Password</label>
+          <input
+            id="loginPassword"
+            value={password}
+            onChange={handleChange}
+            placeholder="Password"
+            type="password"
+            className='form-control'
+          />
+        </div>
+
         <button
-          className='btn btn-white'
+          className="btn btn-white"
           style={{
             cursor: 'pointer',
           }}

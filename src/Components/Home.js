@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Signup from './Signup';
 import Login from './Login';
 import GoToEditor from './GoToEditor';
+import Header from './Header';
 
 const Home = () => {
   const history = useHistory();
@@ -24,10 +25,13 @@ const Home = () => {
   }, [history]);
 
   return (
-    <div className="container">
-      <Signup />
-      <Login />
-      <GoToEditor />
+    <div className="container-fluid">
+      <Header />
+      <div className='row align-items-center'>
+        <Signup  />
+        <GoToEditor />
+        <Login />
+      </div>
     </div>
   );
 };

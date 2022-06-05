@@ -57,37 +57,54 @@ const Signup = () => {
   };
 
   return (
-    <div id="signup">
+    <div className='col-4 my-5' id="signup">
       <h1>Signup</h1>
+      <small className='lead'>Create an account and save your work!</small>
       <form>
-        <input
-          onChange={handleChange}
-          value={name}
-          placeholder="Name"
-          type="text"
-          id="name"
-        />
-        <input
-          onChange={handleChange}
-          value={email}
-          placeholder="Email"
-          type="text"
-          id="email"
-        />
-        <input
-          onChange={handleChange}
-          value={password}
-          placeholder="Password"
-          type="password"
-          id="password"
-        />
-        <input
-          onChange={handleChange}
-          value={confirmPassword}
-          placeholder="Confirm Password"
-          type="password"
-          id="confirmPassword"
-        />
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            onChange={handleChange}
+            value={name}
+            placeholder="Name"
+            type="text"
+            id="name"
+            className='form-control'
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            onChange={handleChange}
+            value={email}
+            placeholder="Email"
+            type="text"
+            id="email"
+            className='form-control'
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            onChange={handleChange}
+            value={password}
+            placeholder="Password"
+            type="password"
+            id="password"
+            className='form-control'
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            onChange={handleChange}
+            value={confirmPassword}
+            placeholder="Confirm Password"
+            type="password"
+            id="confirmPassword"
+            className='form-control'
+          />
+        </div>
         <button
           className="btn btn-white"
           style={{

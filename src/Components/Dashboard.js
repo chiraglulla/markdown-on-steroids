@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import DocumentsTable from './DocumentsTable';
-import Logo from './Logo';
+import Header from './Header';
 
 const Dashboard = () => {
   // npx json-server --watch data/db.json --port 8000
@@ -36,12 +36,14 @@ const Dashboard = () => {
   };
 
   return (
-    <React.Fragment>
-      <Logo />
+    <>
+      <div className="col-12">
+        <Header logout={true} profile={true} />
+      </div>
       <div className="col-12 p-5 rounded">
         <button
           onClick={handleClick}
-          className="btn btn-white blank mx-auto d-flex border border-dark rounded w-20 p-3 align-items-center text-dark"
+          className="btn btn-outline-dark blank mx-auto d-flex w-20 p-3 align-items-center text-dark"
           style={{
             textDecoration: 'none',
           }}
@@ -52,7 +54,7 @@ const Dashboard = () => {
       </div>
 
       <DocumentsTable />
-    </React.Fragment>
+    </>
   );
 };
 

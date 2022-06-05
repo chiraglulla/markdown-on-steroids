@@ -4,7 +4,7 @@ import { useState } from 'react';
 import marked from 'marked';
 import DOMPurify from 'dompurify';
 import Preview from './Preview';
-import Logo from './Logo';
+import Header from './Header';
 
 const Editor = () => {
   const { id } = useParams();
@@ -85,50 +85,45 @@ const Editor = () => {
   };
 
   return (
-    <React.Fragment>
-      {isError ? (
-        <p>{error}</p>
-      ) : (
-        <>
-          <div className="col-12 d-flex align-items-center py-3">
-            <div>
-              <Logo />
-              <input
-                title="name"
-                placeholder="Untitled Document"
-                type="text"
-                value={name}
-                id="name"
-                onChange={handleChange}
-              />
-            </div>
-            <button
-              className="btn btn-sm btn-primary d-flex ml-auto"
-              onClick={handleSave}
-            >
-              {saving ? 'Saving..' : saved ? 'Saved' : 'Save'}
-            </button>
-          </div>
-          <div className="card col-6 p-0 full-height">
-            <label className="card-header lead">Input</label>
-            <div className="card-body p-0 form-group">
-              <textarea
-                className="editor form-control full-height"
-                onChange={handleChange}
-                value={text}
-                name="editor"
-                id="editor"
-                style={{
-                  resize: 'none',
-                  borderRadius: 0,
-                }}
-              ></textarea>
-            </div>
-          </div>
-          <Preview preview={preview} />
-        </>
-      )}
-    </React.Fragment>
+    <>
+      <Header />
+      <div className="col-12 d-flex align-items-center py-3">
+        <div>
+          <input
+            title="name"
+            placeholder="Untitled Document"
+            type="text"
+            value={name}
+            id="name"
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+        <button
+          className="btn btn-white d-flex ml-auto"
+          onClick={handleSave}
+        >
+          {saving ? 'Saving..' : saved ? 'Saved' : 'Save'}
+        </button>
+      </div>
+      <div className="card col-6 p-0 full-height">
+        <label className="card-header lead">Input</label>
+        <div className="card-body p-0 form-group">
+          <textarea
+            className="editor form-control full-height"
+            onChange={handleChange}
+            value={text}
+            name="editor"
+            id="editor"
+            style={{
+              resize: 'none',
+              borderRadius: 0,
+            }}
+          ></textarea>
+        </div>
+      </div>
+      <Preview preview={preview} />
+    </>
   );
 };
 
