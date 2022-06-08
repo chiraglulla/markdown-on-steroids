@@ -6,11 +6,14 @@ const UpdateInfo = () => {
 
   useEffect(() => {
     const getDetails = async () => {
-      const response = await fetch('http://localhost:5000/api/v1/user/me', {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'include',
-      });
+      const response = await fetch(
+        'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/me',
+        {
+          method: 'GET',
+          mode: 'cors',
+          credentials: 'include',
+        }
+      );
 
       const {
         data: { name, email },
@@ -31,16 +34,19 @@ const UpdateInfo = () => {
       name,
       email,
     };
-    const response = await fetch('http://localhost:5000/api/v1/user/updateMe', {
-      method: 'PATCH',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(changes),
-    });
+    const response = await fetch(
+      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/updateMe',
+      {
+        method: 'PATCH',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(changes),
+      }
+    );
 
     const body = await response.json();
 
@@ -54,7 +60,7 @@ const UpdateInfo = () => {
 
   return (
     <div className="col-5 my-5" id="updateInfo">
-      <div className='d-flex align-items-center'>
+      <div className="d-flex align-items-center">
         <h3>Edit your details</h3>
         <button className="btn btn-white mx-3" type="button" onClick={editInfo}>
           Edit

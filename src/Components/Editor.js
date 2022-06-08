@@ -18,10 +18,13 @@ const Editor = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/document/${id}`, {
-      mode: 'cors',
-      credentials: 'include',
-    })
+    fetch(
+      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/document/${id}`,
+      {
+        mode: 'cors',
+        credentials: 'include',
+      }
+    )
       .then((res) => {
         return res.json();
       })
@@ -64,16 +67,19 @@ const Editor = () => {
       name,
       text,
     };
-    fetch(`http://localhost:5000/api/v1/document/${id}`, {
-      method: 'PATCH',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(changes),
-    })
+    fetch(
+      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/document/${id}`,
+      {
+        method: 'PATCH',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(changes),
+      }
+    )
       .then((res) => {
         if (!res.ok) throw Error('Cannot update data.');
         isSaving(false);
@@ -99,10 +105,7 @@ const Editor = () => {
             className="form-control"
           />
         </div>
-        <button
-          className="btn btn-white d-flex ml-auto"
-          onClick={handleSave}
-        >
+        <button className="btn btn-white d-flex ml-auto" onClick={handleSave}>
           {saving ? 'Saving..' : saved ? 'Saved' : 'Save'}
         </button>
       </div>

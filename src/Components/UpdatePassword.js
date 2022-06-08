@@ -13,7 +13,7 @@ const UpdatePassword = () => {
       confirmPassword,
     };
     const response = await fetch(
-      'http://localhost:5000/api/v1/user/updateMyPassword',
+      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/updateMyPassword',
       {
         method: 'PATCH',
         mode: 'cors',
@@ -38,7 +38,7 @@ const UpdatePassword = () => {
         <div className="form-group">
           <label htmlFor="current">Current Password:</label>
           <input
-            className='form-control'
+            className="form-control"
             id="current"
             type="password"
             value={passwordCurrent}
@@ -48,7 +48,7 @@ const UpdatePassword = () => {
         <div className="form-group">
           <label htmlFor="new">New Password:</label>
           <input
-            className='form-control'
+            className="form-control"
             id="new"
             type="password"
             value={password}
@@ -58,7 +58,7 @@ const UpdatePassword = () => {
         <div className="form-group">
           <label htmlFor="newConfirm">Confirm Password:</label>
           <input
-            className='form-control'
+            className="form-control"
             id="newConfirm"
             type="password"
             value={confirmPassword}

@@ -10,19 +10,22 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/api/v1/user/login`, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
+    fetch(
+      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/login`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    )
       .then((res) => {
         return res.json();
       })
@@ -50,7 +53,7 @@ const Login = () => {
   };
 
   return (
-    <div className='col-4 my-5'  id="login">
+    <div className="col-4 my-5" id="login">
       <h1>Login</h1>
       <small className="lead">Login and get to work!</small>
       <form>
@@ -62,7 +65,7 @@ const Login = () => {
             onChange={handleChange}
             placeholder="Email"
             type="email"
-            className='form-control'
+            className="form-control"
           />
         </div>
 
@@ -74,7 +77,7 @@ const Login = () => {
             onChange={handleChange}
             placeholder="Password"
             type="password"
-            className='form-control'
+            className="form-control"
           />
         </div>
 

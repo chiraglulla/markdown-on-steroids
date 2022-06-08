@@ -9,19 +9,22 @@ const Dashboard = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/v1/document', {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: 'Untitled Document',
-        text: '',
-      }),
-    })
+    fetch(
+      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/document',
+      {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: 'Untitled Document',
+          text: '',
+        }),
+      }
+    )
       .then((res) => {
         if (!res.ok) throw Error('Cannot create document.');
         return res.json();

@@ -9,11 +9,14 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/v1/user/isAuthenticated', {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-    })
+    fetch(
+      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/isAuthenticated',
+      {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+      }
+    )
       .then((res) => {
         if (`${res.status}`.startsWith('2')) {
           history.push('/dashboard');
@@ -27,8 +30,8 @@ const Home = () => {
   return (
     <div className="container-fluid">
       <Header />
-      <div className='row align-items-center'>
-        <Signup  />
+      <div className="row align-items-center">
+        <Signup />
         <GoToEditor />
         <Login />
       </div>
