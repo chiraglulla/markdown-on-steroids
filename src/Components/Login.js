@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const history = useHistory();
@@ -80,6 +81,18 @@ const Login = () => {
             className="form-control"
           />
         </div>
+
+        <small className="d-block mb-3">
+          <Link
+            to="/forgot"
+            className="text-dark"
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            forgot password?
+          </Link>
+        </small>
 
         <button
           className="btn btn-white"

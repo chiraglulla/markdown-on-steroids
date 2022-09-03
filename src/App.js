@@ -3,6 +3,7 @@ import Editor from './Components/Editor';
 import Dashboard from './Components/Dashboard';
 import Home from './Components/Home';
 import Profile from './Components/Profile';
+import ForgotPassword from './Components/ForgotPassword';
 
 const App = () => {
   return (
@@ -24,6 +25,9 @@ const App = () => {
             </Route>
             <Route path="/profile" exact>
               <Profile />
+            </Route>
+            <Route path="/forgot" exact>
+              <ForgotPassword />
             </Route>
           </Switch>
         </div>
