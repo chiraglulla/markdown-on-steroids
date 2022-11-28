@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Header from './Header';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
