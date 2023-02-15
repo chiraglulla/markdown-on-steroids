@@ -13,7 +13,7 @@ const UpdatePassword = () => {
       confirmPassword,
     };
     const response = await fetch(
-      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/updateMyPassword',
+      'https://mos-backend.onrender.com/api/v1/user/updateMyPassword',
       {
         method: 'PATCH',
         mode: 'cors',

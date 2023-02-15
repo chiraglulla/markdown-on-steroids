@@ -11,22 +11,19 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch(
-      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/login`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      }
-    )
+    fetch(`https://mos-backend.onrender.com/api/v1/user/login`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
       .then((res) => {
         return res.json();
       })

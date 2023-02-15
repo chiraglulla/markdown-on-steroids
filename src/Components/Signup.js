@@ -25,24 +25,21 @@ const Signup = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    fetch(
-      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/signup`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          confirmPassword,
-        }),
-      }
-    )
+    fetch(`https://mos-backend.onrender.com/api/v1/user/signup`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        confirmPassword,
+      }),
+    })
       .then((res) => {
         return res.json();
       })

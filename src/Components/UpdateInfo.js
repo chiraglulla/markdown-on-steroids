@@ -7,7 +7,7 @@ const UpdateInfo = () => {
   useEffect(() => {
     const getDetails = async () => {
       const response = await fetch(
-        'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/me',
+        'https://mos-backend.onrender.com/api/v1/user/me',
         {
           method: 'GET',
           mode: 'cors',
@@ -35,7 +35,7 @@ const UpdateInfo = () => {
       email,
     };
     const response = await fetch(
-      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/updateMe',
+      'https://mos-backend.onrender.com/api/v1/user/updateMe',
       {
         method: 'PATCH',
         mode: 'cors',

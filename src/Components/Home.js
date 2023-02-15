@@ -9,14 +9,11 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(
-      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/isAuthenticated',
-      {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'include',
-      }
-    )
+    fetch('https://mos-backend.onrender.com/api/v1/user/isAuthenticated', {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+    })
       .then((res) => {
         if (`${res.status}`.startsWith('2')) {
           history.push('/dashboard');

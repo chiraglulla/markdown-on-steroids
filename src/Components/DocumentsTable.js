@@ -10,13 +10,10 @@ const DocumentsTable = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetch(
-      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/document',
-      {
-        mode: 'cors',
-        credentials: 'include',
-      }
-    )
+    fetch('https://mos-backend.onrender.com/api/v1/document', {
+      mode: 'cors',
+      credentials: 'include',
+    })
       .then((res) => {
         return res.json();
       })
@@ -38,18 +35,15 @@ const DocumentsTable = () => {
   }, [history]);
 
   const deleteDocument = (id) => {
-    fetch(
-      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/document/${id}`,
-      {
-        method: 'DELETE',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`https://mos-backend.onrender.com/api/v1/document/${id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) => {
         if (!res.ok) throw Error('Cannot fetch data.');
         setMarkdowns(markdowns.filter((markdown) => markdown._id !== id));

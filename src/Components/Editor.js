@@ -18,13 +18,10 @@ const Editor = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetch(
-      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/document/${id}`,
-      {
-        mode: 'cors',
-        credentials: 'include',
-      }
-    )
+    fetch(`https://mos-backend.onrender.com/api/v1/document/${id}`, {
+      mode: 'cors',
+      credentials: 'include',
+    })
       .then((res) => {
         return res.json();
       })
@@ -67,19 +64,16 @@ const Editor = () => {
       name,
       text,
     };
-    fetch(
-      `https://markdown-on-steroids-backend-production.up.railway.app/api/v1/document/${id}`,
-      {
-        method: 'PATCH',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(changes),
-      }
-    )
+    fetch(`https://mos-backend.onrender.com/api/v1/document/${id}`, {
+      method: 'PATCH',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(changes),
+    })
       .then((res) => {
         if (!res.ok) throw Error('Cannot update data.');
         isSaving(false);

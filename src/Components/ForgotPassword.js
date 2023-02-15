@@ -9,7 +9,7 @@ const ForgotPassword = () => {
 
     const sendResetLink = async () => {
       const response = await fetch(
-        'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/forgotPassword',
+        'https://mos-backend.onrender.com/api/v1/user/forgotPassword',
         {
           method: 'POST',
           mode: 'cors',

@@ -5,7 +5,7 @@ const Header = (props) => {
   const history = useHistory();
   const logoutUser = async (e) => {
     const response = await fetch(
-      'https://markdown-on-steroids-backend-production.up.railway.app/api/v1/user/logout',
+      'https://mos-backend.onrender.com/api/v1/user/logout',
       {
         method: 'GET',
         mode: 'cors',
