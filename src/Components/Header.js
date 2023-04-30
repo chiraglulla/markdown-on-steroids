@@ -4,14 +4,11 @@ import { useHistory } from 'react-router-dom';
 const Header = (props) => {
   const history = useHistory();
   const logoutUser = async (e) => {
-    const response = await fetch(
-      'https://mos-backend.onrender.com/api/v1/user/logout',
-      {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'include',
-      }
-    );
+    const response = await fetch('http://localhost:5000/api/v1/user/logout', {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+    });
 
     if (response.status === 204) history.push('/');
   };

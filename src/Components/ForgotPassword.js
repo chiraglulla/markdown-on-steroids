@@ -9,7 +9,7 @@ const ForgotPassword = () => {
 
     const sendResetLink = async () => {
       const response = await fetch(
-        'https://mos-backend.onrender.com/api/v1/user/forgotPassword',
+        'http://localhost:5000/api/v1/user/forgotPassword',
         {
           method: 'POST',
           mode: 'cors',

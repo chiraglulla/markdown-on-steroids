@@ -6,6 +6,7 @@ import Profile from './Components/Profile';
 import ForgotPassword from './Components/ForgotPassword';
 
 const App = () => {
+
   return (
     <Router>
       <div className="App container-fluid lead">

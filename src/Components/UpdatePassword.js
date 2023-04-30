@@ -13,7 +13,7 @@ const UpdatePassword = () => {
       confirmPassword,
     };
     const response = await fetch(
-      'https://mos-backend.onrender.com/api/v1/user/updateMyPassword',
+      'http://localhost:5000/api/v1/user/updateMyPassword',
       {
         method: 'PATCH',
         mode: 'cors',

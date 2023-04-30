@@ -5,43 +5,48 @@ import marked from 'marked';
 import DOMPurify from 'dompurify';
 import Preview from './Preview';
 import Header from './Header';
+import Popup from './Popup';
 
 const Editor = () => {
   const { id } = useParams();
   const defaultText = '# Start by writing some markup!';
   const [text, setText] = useState('');
   const [preview, setPreview] = useState('');
-  const [name, setName] = useState('Untitled Document');
+  const [docName, setDocName] = useState('Untitled Document');
   const [saving, isSaving] = useState(false);
   const [saved, isSaved] = useState(false);
   const [error, setError] = useState();
   const [isError, setIsError] = useState(false);
+  const [popup, showPopup] = useState(false);
 
   useEffect(() => {
-    fetch(`https://mos-backend.onrender.com/api/v1/document/${id}`, {
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then((res) => {
-        return res.json();
+    if (id !== undefined) {
+      fetch(`http://localhost:5000/api/v1/document/${id}`, {
+        mode: 'cors',
+        credentials: 'include',
       })
-      .then((payload) => {
-        if (payload.status !== 'success') {
-          if (payload.statusCode === 404 || payload.statusCode === 500) {
-            setIsError(true);
-            setError(payload.message);
+        .then((res) => {
+          return res.json();
+        })
+        .then((payload) => {
+          if (payload.status !== 'success') {
+            if (payload.statusCode === 404 || payload.statusCode === 500) {
+              setIsError(true);
+              setError(payload.message);
+            }
+          } else {
+            console.log(payload)
+            const dataText = payload.data.document.text;
+            const docName = payload.data.document.name;
+            if (dataText === '') setText(defaultText);
+            else setText(dataText);
+            setDocName(docName);
           }
-        } else {
-          const dataText = payload.data.document.text;
-          const name = payload.data.document.name;
-          if (dataText === '') setText(defaultText);
-          else setText(dataText);
-          setName(name);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [id]);
 
   useEffect(() => {
@@ -52,36 +57,53 @@ const Editor = () => {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    if (e.target.id === 'editor') setText(value);
-    else if (e.target.id === 'name') setName(value);
+    if (e.target.id === 'editor') {
+      setText(value);
+    } else if (e.target.id === 'docName') {
+      setDocName(value);
+    }
 
     if (saved) isSaved(false);
   };
 
   const handleSave = (e) => {
-    isSaving(true);
-    const changes = {
-      name,
-      text,
-    };
-    fetch(`https://mos-backend.onrender.com/api/v1/document/${id}`, {
-      method: 'PATCH',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(changes),
-    })
-      .then((res) => {
-        if (!res.ok) throw Error('Cannot update data.');
-        isSaving(false);
-        isSaved(true);
+    if (id === undefined) {
+      const recover = {
+        text,
+        docName,
+        siteName: window.location.origin,
+      }
+      localStorage.setItem('recover', JSON.stringify(recover))
+      showPopup(true);
+    } else {
+      isSaving(true);
+      const changes = {
+        docName,
+        text,
+      };
+      fetch(`http://localhost:5000/api/v1/document/${id}`, {
+        method: 'PATCH',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(changes),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          if (!res.ok) throw Error('Cannot update data.');
+          isSaving(false);
+          isSaved(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handleClose = () => {
+    showPopup(false);
   };
 
   return (
@@ -90,11 +112,11 @@ const Editor = () => {
       <div className="col-12 d-flex align-items-center py-3">
         <div>
           <input
-            title="name"
+            title="docName"
             placeholder="Untitled Document"
             type="text"
-            value={name}
-            id="name"
+            value={docName}
+            id="docName"
             onChange={handleChange}
             className="form-control"
           />
@@ -120,6 +142,7 @@ const Editor = () => {
         </div>
       </div>
       <Preview preview={preview} />
+      {popup && <Popup handleClose={handleClose} />}
     </>
   );
 };

@@ -9,7 +9,7 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch('https://mos-backend.onrender.com/api/v1/user/isAuthenticated', {
+    fetch('http://localhost:5000/api/v1/user/isAuthenticated', {
       method: 'GET',
       mode: 'cors',
       credentials: 'include',
@@ -28,7 +28,7 @@ const Home = () => {
     <div className="container-fluid">
       <Header />
       <div className="row align-items-center">
-        <Signup />
+        <Signup span={4} />
         <GoToEditor />
         <Login />
       </div>

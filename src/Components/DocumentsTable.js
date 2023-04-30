@@ -10,7 +10,7 @@ const DocumentsTable = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetch('https://mos-backend.onrender.com/api/v1/document', {
+    fetch('http://localhost:5000/api/v1/document', {
       mode: 'cors',
       credentials: 'include',
     })
@@ -35,7 +35,7 @@ const DocumentsTable = () => {
   }, [history]);
 
   const deleteDocument = (id) => {
-    fetch(`https://mos-backend.onrender.com/api/v1/document/${id}`, {
+    fetch(`http://localhost:5000/api/v1/document/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       credentials: 'include',

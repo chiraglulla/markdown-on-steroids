@@ -6,14 +6,11 @@ const UpdateInfo = () => {
 
   useEffect(() => {
     const getDetails = async () => {
-      const response = await fetch(
-        'https://mos-backend.onrender.com/api/v1/user/me',
-        {
-          method: 'GET',
-          mode: 'cors',
-          credentials: 'include',
-        }
-      );
+      const response = await fetch('http://localhost:5000/api/v1/user/me', {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+      });
 
       const {
         data: { name, email },
@@ -34,19 +31,16 @@ const UpdateInfo = () => {
       name,
       email,
     };
-    const response = await fetch(
-      'https://mos-backend.onrender.com/api/v1/user/updateMe',
-      {
-        method: 'PATCH',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(changes),
-      }
-    );
+    const response = await fetch('http://localhost:5000/api/v1/user/updateMe', {
+      method: 'PATCH',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(changes),
+    });
 
     const body = await response.json();
 

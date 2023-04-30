@@ -11,7 +11,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch(`https://mos-backend.onrender.com/api/v1/user/login`, {
+    fetch(`http://localhost:5000/api/v1/user/login`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
