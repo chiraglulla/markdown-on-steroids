@@ -35,7 +35,6 @@ const Editor = () => {
               setError(payload.message);
             }
           } else {
-            console.log(payload)
             const dataText = payload.data.document.text;
             const docName = payload.data.document.name;
             if (dataText === '') setText(defaultText);
@@ -70,7 +69,7 @@ const Editor = () => {
     if (id === undefined) {
       const recover = {
         text,
-        docName,
+        name: docName,
         siteName: window.location.origin,
       }
       localStorage.setItem('recover', JSON.stringify(recover))
@@ -78,7 +77,7 @@ const Editor = () => {
     } else {
       isSaving(true);
       const changes = {
-        docName,
+        name: docName,
         text,
       };
       fetch(`http://localhost:5000/api/v1/document/${id}`, {

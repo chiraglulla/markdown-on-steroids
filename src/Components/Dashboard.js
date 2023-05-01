@@ -8,9 +8,10 @@ const Dashboard = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if(localStorage.getItem('recover')) {
+    const recover = JSON.parse(localStorage.getItem('recover'));
+    if (recover) {
       // console.log("Got something to recover");
-      document.querySelector('#createButton').click()
+      document.querySelector('#createButton').click();
     }
   }, []);
 
@@ -22,11 +23,11 @@ const Dashboard = () => {
       text: '',
     };
     const recover = JSON.parse(localStorage.getItem('recover'));
-    localStorage.removeItem('recover')
+    localStorage.removeItem('recover');
     if (recover) {
-      console.log(recover)
+      console.log(recover);
       body = {
-        name: recover.docName,
+        name: recover.name,
         text: recover.text,
       };
     }
@@ -62,7 +63,7 @@ const Dashboard = () => {
       </div>
       <div className="col-12 p-5 rounded">
         <button
-          id='createButton'
+          id="createButton"
           onClick={handleCreation}
           className="btn btn-outline-dark blank mx-auto d-flex w-20 p-3 align-items-center text-dark"
           style={{
