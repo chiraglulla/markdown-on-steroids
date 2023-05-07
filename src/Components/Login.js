@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ span, showSignupLink, showLogin, showSignup }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,9 +51,23 @@ const Login = () => {
   };
 
   return (
-    <div className="col-4 my-5" id="login">
+    <div className={`col-${span} my-5`} id="login">
       <h1>Login</h1>
-      <small className="lead">Login and get to work!</small>
+      <small className="lead d-block">Login and get to work!</small>
+      {showSignupLink && (
+        <small className="lead">
+          New here?{' '}
+          <button
+            onClick={() => {
+              showSignup(true);
+              showLogin(false);
+            }}
+            className='btn btn-white'
+          >
+            Signup
+          </button>
+        </small>
+      )}
       <form>
         <div className="form-group">
           <label htmlFor="loginEmail">Email</label>

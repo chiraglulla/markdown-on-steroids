@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Signup = ({ span }) => {
+const Signup = ({ span, showLoginLink, showLogin, showSignup }) => {
   const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -59,7 +59,21 @@ const Signup = ({ span }) => {
   return (
     <div className={`col-${span} my-5`} id="signup">
       <h1>Signup</h1>
-      <small className="lead">Create an account and save your work!</small>
+      <small className="lead d-block">Create an account and save your work!</small>
+      {showLoginLink && (
+        <small className="lead">
+          Already a user?{' '}
+          <button
+            onClick={() => {
+              showLogin(true);
+              showSignup(false);
+            }}
+            className='btn btn-white'
+          >
+            Login
+          </button>
+        </small>
+      )}
       <form>
         <div className="form-group">
           <label htmlFor="name">Name</label>
