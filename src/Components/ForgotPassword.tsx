@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('Send');
 
-  const handleReset = (e) => {
+  const handleReset = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     const sendResetLink = async () => {
       const response = await fetch(
-        'https://mos-backend.onrender.com/api/v1/user/forgotPassword',
+        'http://localhost:5000/api/v1/user/forgotPassword',
         {
           method: 'POST',
           mode: 'cors',

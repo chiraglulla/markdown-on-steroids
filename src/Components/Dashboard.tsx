@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import DocumentsTable from './DocumentsTable';
 import Header from './Header';
@@ -7,9 +7,32 @@ const Dashboard = () => {
   // npx json-server --watch data/db.json --port 8000
   const history = useHistory();
 
-  const handleClick = (e) => {
+  useEffect(() => {
+    const recover: {name: string; text: string} = JSON.parse(localStorage.getItem('recover') || '{}')
+    if (recover.name) {
+      // console.log("Got something to recover");
+      (document.querySelector('#createButton') as HTMLButtonElement).click();
+    }
+  }, []);
+
+  const handleCreation = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    fetch('https://mos-backend.onrender.com/api/v1/document', {
+
+    let body = {
+      name: 'Untitled Document',
+      text: '',
+    };
+    const recover = JSON.parse(localStorage.getItem('recover') || '{}') as {name: string; text: string}
+    localStorage.removeItem('recover');
+    if (recover.name) {
+      console.log(recover);
+      body = {
+        name: recover.name,
+        text: recover.text,
+      };
+    }
+    console.log(body)
+    fetch('http://localhost:5000/api/v1/document', {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
@@ -17,12 +40,10 @@ const Dashboard = () => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: 'Untitled Document',
-        text: '',
-      }),
+      body: JSON.stringify(body),
     })
       .then((res) => {
+        // console.log(res)
         if (!res.ok) throw Error('Cannot create document.');
         return res.json();
       })
@@ -42,7 +63,8 @@ const Dashboard = () => {
       </div>
       <div className="col-12 p-5 rounded">
         <button
-          onClick={handleClick}
+          id="createButton"
+          onClick={handleCreation}
           className="btn btn-outline-dark blank mx-auto d-flex w-20 p-3 align-items-center text-dark"
           style={{
             textDecoration: 'none',

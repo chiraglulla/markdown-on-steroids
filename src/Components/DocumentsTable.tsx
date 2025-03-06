@@ -3,14 +3,21 @@ import { Link } from 'react-router-dom';
 import { formatDistance } from 'date-fns';
 import { useHistory } from 'react-router-dom';
 
+type Markdowns = {
+  _id: string
+  name: string
+  text: string
+  updatedAt: Date
+}
+
 const DocumentsTable = () => {
   const history = useHistory();
-  const [markdowns, setMarkdowns] = useState([]);
-  const [error, setError] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [markdowns, setMarkdowns] = useState<Markdowns[]>([]);
+  const [error, setError] = useState<string>('');
+  const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch('https://mos-backend.onrender.com/api/v1/document', {
+    fetch('http://localhost:5000/api/v1/document', {
       mode: 'cors',
       credentials: 'include',
     })
@@ -34,8 +41,8 @@ const DocumentsTable = () => {
       });
   }, [history]);
 
-  const deleteDocument = (id) => {
-    fetch(`https://mos-backend.onrender.com/api/v1/document/${id}`, {
+  const deleteDocument = (id: string) => {
+    fetch(`http://localhost:5000/api/v1/document/${id}`, {
       method: 'DELETE',
       mode: 'cors',
       credentials: 'include',
@@ -84,7 +91,7 @@ const DocumentsTable = () => {
                     <Link
                       to={`/editor/${markdown._id}`}
                       className="text-dark mx-3"
-                      styles={{
+                      style={{
                         textDecoration: 'none',
                       }}
                     >
@@ -93,7 +100,7 @@ const DocumentsTable = () => {
                     <Link
                       to="/"
                       className="text-dark mx-3"
-                      styles={{
+                      style={{
                         textDecoration: 'none',
                       }}
                     >
@@ -101,9 +108,9 @@ const DocumentsTable = () => {
                     </Link>
                     <Link
                       to="/dashboard"
-                      onClick={(e) => deleteDocument(markdown._id)}
+                      onClick={() => deleteDocument(markdown._id)}
                       className="text-dark mx-3"
-                      styles={{
+                      style={{
                         textDecoration: 'none',
                       }}
                     >

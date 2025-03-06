@@ -1,17 +1,18 @@
+import React from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props: { span?: number, showSignupLink?: boolean , showLogin?: (bool: boolean) => void, showSignup?: (bool: boolean) => void }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    fetch(`https://mos-backend.onrender.com/api/v1/user/login`, {
+    fetch(`http://localhost:5000/api/v1/user/login`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
@@ -40,7 +41,7 @@ const Login = () => {
       });
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: string; id: string; }; }) => {
     const { value, id } = e.target;
     if (id === 'loginEmail') setEmail(value);
     if (id === 'loginPassword') setPassword(value);
@@ -51,9 +52,23 @@ const Login = () => {
   };
 
   return (
-    <div className="col-4 my-5" id="login">
+    <div className={`col-${props.span} my-5`} id="login">
       <h1>Login</h1>
-      <small className="lead">Login and get to work!</small>
+      <small className="lead d-block">Login and get to work!</small>
+      {props.showSignupLink && (
+        <small className="lead">
+          New here?{' '}
+          <button
+            onClick={() => {
+              props.showSignup?.(true);
+              props.showLogin?.(false);
+            }}
+            className='btn btn-white'
+          >
+            Signup
+          </button>
+        </small>
+      )}
       <form>
         <div className="form-group">
           <label htmlFor="loginEmail">Email</label>

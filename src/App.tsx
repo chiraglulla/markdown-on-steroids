@@ -1,3 +1,4 @@
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Editor from './Components/Editor';
 import Dashboard from './Components/Dashboard';
@@ -6,6 +7,7 @@ import Profile from './Components/Profile';
 import ForgotPassword from './Components/ForgotPassword';
 
 const App = () => {
+
   return (
     <Router>
       <div className="App container-fluid lead">

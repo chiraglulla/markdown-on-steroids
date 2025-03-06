@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Signup from './Signup';
@@ -9,7 +10,7 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch('https://mos-backend.onrender.com/api/v1/user/isAuthenticated', {
+    fetch('http://localhost:5000/api/v1/user/isAuthenticated', {
       method: 'GET',
       mode: 'cors',
       credentials: 'include',
@@ -26,9 +27,9 @@ const Home = () => {
 
   return (
     <div className="container-fluid">
-      <Header />
+      <Header profile={false} logout={false} />
       <div className="row align-items-center">
-        <Signup />
+        <Signup span={4} />
         <GoToEditor />
         <Login />
       </div>

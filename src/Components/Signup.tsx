@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = (props: { span?: number, showLoginLink?: boolean, showLogin?: (bool: boolean) => void, showSignup?: (bool:boolean) => void }) => {
   const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ const Signup = () => {
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: string; id: string; }; }) => {
     const { value, id } = e.target;
     if (id === 'name') setName(value);
     if (id === 'email') setEmail(value);
@@ -23,9 +23,9 @@ const Signup = () => {
     }
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    fetch(`https://mos-backend.onrender.com/api/v1/user/signup`, {
+    fetch(`http://localhost:5000/api/v1/user/signup`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include',
@@ -57,9 +57,23 @@ const Signup = () => {
   };
 
   return (
-    <div className="col-4 my-5" id="signup">
+    <div className={`col-${props.span} my-5`} id="signup">
       <h1>Signup</h1>
-      <small className="lead">Create an account and save your work!</small>
+      <small className="lead d-block">Create an account and save your work!</small>
+      {props.showLoginLink && (
+        <small className="lead">
+          Already a user?{' '}
+          <button
+            onClick={() => {
+              props.showLogin?.(true);
+              props.showSignup?.(false);
+            }}
+            className='btn btn-white'
+          >
+            Login
+          </button>
+        </small>
+      )}
       <form>
         <div className="form-group">
           <label htmlFor="name">Name</label>

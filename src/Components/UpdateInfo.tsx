@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const UpdateInfo = () => {
   const [name, setName] = useState('');
@@ -6,14 +6,11 @@ const UpdateInfo = () => {
 
   useEffect(() => {
     const getDetails = async () => {
-      const response = await fetch(
-        'https://mos-backend.onrender.com/api/v1/user/me',
-        {
-          method: 'GET',
-          mode: 'cors',
-          credentials: 'include',
-        }
-      );
+      const response = await fetch('http://localhost:5000/api/v1/user/me', {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+      });
 
       const {
         data: { name, email },
@@ -26,36 +23,33 @@ const UpdateInfo = () => {
     getDetails();
   }, []);
 
-  const saveInfo = async (e) => {
+  const saveInfo = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    document.querySelector('#updateName').disabled = true;
-    document.querySelector('#updateEmail').disabled = true;
+    (document.querySelector('#updateName') as HTMLInputElement).disabled = true;
+    (document.querySelector('#updateEmail') as HTMLInputElement).disabled = true;
     const changes = {
       name,
       email,
     };
-    const response = await fetch(
-      'https://mos-backend.onrender.com/api/v1/user/updateMe',
-      {
-        method: 'PATCH',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(changes),
-      }
-    );
+    const response = await fetch('http://localhost:5000/api/v1/user/updateMe', {
+      method: 'PATCH',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(changes),
+    });
 
     const body = await response.json();
 
     console.log(body);
   };
 
-  const editInfo = (e) => {
-    document.querySelector('#updateName').disabled = false;
-    document.querySelector('#updateEmail').disabled = false;
+  const editInfo = () => {
+    (document.querySelector('#updateName') as HTMLInputElement).disabled = false;
+    (document.querySelector('#updateEmail') as HTMLInputElement).disabled = false;
   };
 
   return (
