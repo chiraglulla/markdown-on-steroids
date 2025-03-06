@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const UpdateInfo = () => {
   const [name, setName] = useState('');
@@ -23,10 +23,10 @@ const UpdateInfo = () => {
     getDetails();
   }, []);
 
-  const saveInfo = async (e) => {
+  const saveInfo = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    document.querySelector('#updateName').disabled = true;
-    document.querySelector('#updateEmail').disabled = true;
+    (document.querySelector('#updateName') as HTMLInputElement).disabled = true;
+    (document.querySelector('#updateEmail') as HTMLInputElement).disabled = true;
     const changes = {
       name,
       email,
@@ -47,9 +47,9 @@ const UpdateInfo = () => {
     console.log(body);
   };
 
-  const editInfo = (e) => {
-    document.querySelector('#updateName').disabled = false;
-    document.querySelector('#updateEmail').disabled = false;
+  const editInfo = () => {
+    (document.querySelector('#updateName') as HTMLInputElement).disabled = false;
+    (document.querySelector('#updateEmail') as HTMLInputElement).disabled = false;
   };
 
   return (

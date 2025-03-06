@@ -1,3 +1,4 @@
+import React from 'react';
 import UpdateInfo from './UpdateInfo';
 import UpdatePassword from './UpdatePassword';
 import Header from './Header';
@@ -5,7 +6,7 @@ import Header from './Header';
 const Profile = () => {
   return (
     <div className="container-fluid">
-      <Header logout={true} />
+      <Header profile={false} logout={true} />
       <main className='row my-5'>
         <UpdateInfo />
         <div className="col-1"></div>

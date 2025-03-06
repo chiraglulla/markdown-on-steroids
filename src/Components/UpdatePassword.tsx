@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const UpdatePassword = () => {
   const [passwordCurrent, setCurrent] = useState('');
   const [password, setNew] = useState('');
   const [confirmPassword, setConfirm] = useState('');
 
-  const updatePassword = async (e) => {
+  const updatePassword = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const changes = {
       passwordCurrent,

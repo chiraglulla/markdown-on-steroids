@@ -1,4 +1,4 @@
-import React, { useEffect, isSyntheticEvent } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import DocumentsTable from './DocumentsTable';
 import Header from './Header';
@@ -8,30 +8,30 @@ const Dashboard = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const recover = JSON.parse(localStorage.getItem('recover'));
-    if (recover) {
+    const recover: {name: string; text: string} = JSON.parse(localStorage.getItem('recover') || '{}')
+    if (recover.name) {
       // console.log("Got something to recover");
-      document.querySelector('#createButton').click();
+      (document.querySelector('#createButton') as HTMLButtonElement).click();
     }
   }, []);
 
-  const handleCreation = (e) => {
+  const handleCreation = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     let body = {
       name: 'Untitled Document',
       text: '',
     };
-    const recover = JSON.parse(localStorage.getItem('recover'));
+    const recover = JSON.parse(localStorage.getItem('recover') || '{}') as {name: string; text: string}
     localStorage.removeItem('recover');
-    if (recover) {
+    if (recover.name) {
       console.log(recover);
       body = {
         name: recover.name,
         text: recover.text,
       };
     }
-
+    console.log(body)
     fetch('http://localhost:5000/api/v1/document', {
       method: 'POST',
       mode: 'cors',

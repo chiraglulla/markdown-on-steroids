@@ -8,7 +8,7 @@ import Header from './Header';
 import Popup from './Popup';
 
 const Editor = () => {
-  const { id } = useParams();
+  const { id } = useParams<{id: string}>();
   const defaultText = '# Start by writing some markup!';
   const [text, setText] = useState('');
   const [preview, setPreview] = useState('');
@@ -54,7 +54,7 @@ const Editor = () => {
     setPreview(sanitizedHtml);
   }, [text]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: string; id: string; }; }) => {
     const value = e.target.value;
     if (e.target.id === 'editor') {
       setText(value);
@@ -65,7 +65,7 @@ const Editor = () => {
     if (saved) isSaved(false);
   };
 
-  const handleSave = (e) => {
+  const handleSave = () => {
     if (id === undefined) {
       const recover = {
         text,
@@ -107,7 +107,7 @@ const Editor = () => {
 
   return (
     <>
-      <Header />
+      <Header profile={false} logout={false} />
       <div className="col-12 d-flex align-items-center py-3">
         <div>
           <input

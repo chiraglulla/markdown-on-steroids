@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Signup from './Signup';
 import Login from './Login';
 
-const Popup = ({ handleClose }) => {
-  const [login, showLogin] = useState(false);
-  const [signup, showSignup] = useState(true);
+const Popup = (props: { handleClose: () => void }) => {
+  const [login, showLogin] = useState<boolean>(false);
+  const [signup, showSignup] = useState<boolean>(true);
 
   return (
     <div className="popup-wrapper">
       <div className="popup">
-        <div className="popup-close" onClick={handleClose}>
+        <div className="popup-close" onClick={props.handleClose}>
           &#x2715;
         </div>
         <div className="popup-content">

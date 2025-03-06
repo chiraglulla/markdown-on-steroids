@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Signup from './Signup';
@@ -26,7 +27,7 @@ const Home = () => {
 
   return (
     <div className="container-fluid">
-      <Header />
+      <Header profile={false} logout={false} />
       <div className="row align-items-center">
         <Signup span={4} />
         <GoToEditor />

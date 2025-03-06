@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-const Header = (props) => {
+const Header = (props: { profile: boolean; logout: boolean; }) => {
   const history = useHistory();
-  const logoutUser = async (e) => {
+  const logoutUser = async () => {
     const response = await fetch('http://localhost:5000/api/v1/user/logout', {
       method: 'GET',
       mode: 'cors',

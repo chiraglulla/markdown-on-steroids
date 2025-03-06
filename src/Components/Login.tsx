@@ -1,15 +1,16 @@
+import React from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const Login = ({ span, showSignupLink, showLogin, showSignup }) => {
+const Login = (props: { span?: number, showSignupLink?: boolean , showLogin?: (bool: boolean) => void, showSignup?: (bool: boolean) => void }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     fetch(`http://localhost:5000/api/v1/user/login`, {
       method: 'POST',
@@ -40,7 +41,7 @@ const Login = ({ span, showSignupLink, showLogin, showSignup }) => {
       });
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: string; id: string; }; }) => {
     const { value, id } = e.target;
     if (id === 'loginEmail') setEmail(value);
     if (id === 'loginPassword') setPassword(value);
@@ -51,16 +52,16 @@ const Login = ({ span, showSignupLink, showLogin, showSignup }) => {
   };
 
   return (
-    <div className={`col-${span} my-5`} id="login">
+    <div className={`col-${props.span} my-5`} id="login">
       <h1>Login</h1>
       <small className="lead d-block">Login and get to work!</small>
-      {showSignupLink && (
+      {props.showSignupLink && (
         <small className="lead">
           New here?{' '}
           <button
             onClick={() => {
-              showSignup(true);
-              showLogin(false);
+              props.showSignup?.(true);
+              props.showLogin?.(false);
             }}
             className='btn btn-white'
           >

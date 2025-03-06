@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('Send');
 
-  const handleReset = (e) => {
+  const handleReset = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     const sendResetLink = async () => {
